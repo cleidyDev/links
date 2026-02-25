@@ -1,9 +1,10 @@
-import {Image,View,TouchableOpacity,FlatList} from 'react-native'
+import {Image,View,TouchableOpacity,FlatList, Modal,Text} from 'react-native'
 import {MaterialIcons} from "@expo/vector-icons"
 import {styles} from "./styles"
 import { colors } from '@/styles/color'
 import { Categories } from "@/components/categories"
 import { Link } from '@/components/link'
+import { Option } from '@/components/option'
 
 export default function Index(){
     return(
@@ -30,6 +31,30 @@ export default function Index(){
                     />
                 )}
             />
+            <Modal visible={false} transparent>
+                <View style={styles.modal}>
+                    <View style={styles.modalContent}>
+                        <View style={styles.modalHeader}>
+                            <Text style={styles.modalCategory}>
+                                Projectos
+                            </Text>
+                            <TouchableOpacity >
+                                <MaterialIcons name="close" size={20} color={colors.gray[400]} />
+                            </TouchableOpacity>
+                        </View>
+                        <Text style={styles.modalLinkName}>
+                            Organify
+                        </Text>
+                        <Text style={styles.modalUrl}>
+                            https://beta.v1.organify.studio/cleidy-fumancas-workspace/
+                        </Text>
+                        <View style={styles.modalFooter}>
+                            <Option name="Exlcuir" icon='delete' variant='secondary'/>
+                            <Option name='Abrir' icon="language"/>
+                        </View>
+                    </View>
+                </View>
+            </Modal>
         </View>
     )
 }
