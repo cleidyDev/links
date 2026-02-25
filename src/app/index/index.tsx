@@ -1,4 +1,4 @@
-import {Image,View,TouchableOpacity} from 'react-native'
+import {Image,View,TouchableOpacity,FlatList} from 'react-native'
 import {MaterialIcons} from "@expo/vector-icons"
 import {styles} from "./styles"
 import { colors } from '@/styles/color'
@@ -16,7 +16,20 @@ export default function Index(){
                 </TouchableOpacity>
             </View>
             <Categories/>
-            <Link name="Organify" url="https://beta.v1.organify.studio/cleidy-fumancas-workspace/" onDetails={()=> console.log("Link Pressed")}/>
+            <FlatList
+                style={styles.links}
+                contentContainerStyle={styles.LinksContent}
+                showsVerticalScrollIndicator={false}
+                data={["1","2","3","4","5","6","7","8","9","10"]}
+                keyExtractor={item => item}
+                renderItem={()=>(
+                    <Link 
+                        name="Organify"
+                        url="https://beta.v1.organify.studio/cleidy-fumancas-workspace/" 
+                        onDetails={()=> console.log("Link Pressed")}
+                    />
+                )}
+            />
         </View>
     )
 }

@@ -1,3 +1,4 @@
+import { colors } from "@/styles/color"
 import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
     header:{
@@ -15,5 +16,14 @@ export const styles = StyleSheet.create({
     logo:{
         height:32,
         width: 38,
+    },
+    links:{
+        borderTopWidth:1,
+        borderTopColor:colors.gray[600],
+    },
+    LinksContent:{
+        gap:20,
+        padding:24,
+        paddingBottom:100,
     }
 })
