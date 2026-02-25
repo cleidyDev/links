@@ -3,6 +3,7 @@ import {MaterialIcons} from "@expo/vector-icons"
 import {styles} from "./styles"
 import { colors } from '@/styles/color'
 import { Categories } from "@/components/categories"
+import { Link } from '@/components/link'
 
 export default function Index(){
     return(
@@ -15,6 +16,7 @@ export default function Index(){
                 </TouchableOpacity>
             </View>
             <Categories/>
+            <Link name="Organify" url="https://beta.v1.organify.studio/cleidy-fumancas-workspace/" onDetails={()=> console.log("Link Pressed")}/>
         </View>
     )
 }
