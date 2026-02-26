@@ -5,6 +5,7 @@ import { colors } from '@/styles/color'
 import { Categories } from "@/components/categories"
 import { Link } from '@/components/link'
 import { Option } from '@/components/option'
+import { router } from 'expo-router'
 
 export default function Index(){
     return(
@@ -12,7 +13,7 @@ export default function Index(){
             <View style={styles.header}>
                 <Image source={require("@/assets/logo.png")} style={styles.logo} />
 
-                <TouchableOpacity activeOpacity={0.8}>
+                <TouchableOpacity activeOpacity={0.8} onPress={()=>router.navigate("/index")}>
                     <MaterialIcons name="add" size={32} color={colors.green[300]} />
                 </TouchableOpacity>
             </View>
