@@ -5,6 +5,7 @@ import { colors } from "@/styles/color"
 import { router } from "expo-router"
 import { Categories } from "@/components/categories"
 import { Input } from "@/components/input"
+import { Button } from "@/components/Button"
 
 export function AddPage(){
     return(
@@ -23,6 +24,7 @@ export function AddPage(){
             <View style={styles.form}>
                 <Input placeholder="Link Name"/>
                 <Input placeholder="Url"/>
+                <Button title="Adicionar"/>
             </View>
         </View>
 
