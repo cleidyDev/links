@@ -16,7 +16,7 @@ export default function Index(){
             <View style={styles.header}>
                 <Image source={require("@/assets/logo.png")} style={styles.logo} />
 
-                <TouchableOpacity activeOpacity={0.8} onPress={()=>router.navigate("./src/app/add")}>
+                <TouchableOpacity activeOpacity={0.8} onPress={()=>router.navigate("/add")}>
                     <MaterialIcons name="add" size={32} color={colors.green[300]} />
                 </TouchableOpacity>
             </View>
