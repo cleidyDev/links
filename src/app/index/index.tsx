@@ -11,6 +11,8 @@ import { categories } from '@/utils/categories'
 import { linkStorage, type LinkStorage } from '@/storage/link-storage'
 
 export default function Index(){
+    const [showModal,setShowModal] = useState(false)
+    const [link,setLink] = useState<LinkStorage>({} as LinkStorage)
     const [links,setLinks] = useState<LinkStorage[]>([])
     const [category,setCategory] = useState(categories[0].name)
     async function getLinks(){
@@ -21,6 +23,12 @@ export default function Index(){
             Alert.alert("Error", "Error a listar os links")
         }
     }
+
+    function handleDetails(selected:LinkStorage){
+        setShowModal(true)
+        setLink(selected)
+    }
+
     useFocusEffect(
         useCallback(()=>{
             getLinks()
@@ -46,26 +54,30 @@ export default function Index(){
                     <Link 
                         name={item.name}
                         url={item.url} 
-                        onDetails={()=> console.log("Link Pressed")}
+                        onDetails={()=>handleDetails(item)}
                     />
                 )}
             /> 
-            <Modal visible={false} transparent>
+            <Modal visible={showModal} transparent animationType='slide'>
                 <View style={styles.modal}>
                     <View style={styles.modalContent}>
                         <View style={styles.modalHeader}>
                             <Text style={styles.modalCategory}>
-                                Projectos
+                                {link.category}
                             </Text>
-                            <TouchableOpacity >
-                                <MaterialIcons name="close" size={20} color={colors.gray[400]} />
+                            <TouchableOpacity onPress={()=>setShowModal(false)} >
+                                <MaterialIcons 
+                                    name="close" 
+                                    size={20}
+                                    color={colors.gray[400]}
+                                 />
                             </TouchableOpacity>
                         </View>
                         <Text style={styles.modalLinkName}>
-                            Organify
+                            {link.name}
                         </Text>
                         <Text style={styles.modalUrl}>
-                            https://beta.v1.organify.studio/cleidy-fumancas-workspace/
+                            {link.url}
                         </Text>
                         <View style={styles.modalFooter}>
                             <Option name="Exlcuir" icon='delete' variant='secondary'/>
