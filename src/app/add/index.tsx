@@ -34,6 +34,10 @@ export function AddPage(){
                 url,
                 category
             })
+            Alert.alert("Sucess",
+                "Novo link adicionado",
+                [{text:"Ok",onPress:()=> router.back()}]
+            )
         }catch(error){
             Alert.alert("Error","Não foi possivel salver o link")
         }
