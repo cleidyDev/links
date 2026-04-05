@@ -1,4 +1,4 @@
-import {Image,View,TouchableOpacity,FlatList, Modal,Text, Alert} from 'react-native'
+import {Image,View,TouchableOpacity,FlatList, Modal,Text, Alert, Linking} from 'react-native'
 import {MaterialIcons} from "@expo/vector-icons"
 import {styles} from "./styles"
 import { colors } from '@/styles/color'
@@ -46,6 +46,15 @@ export default function Index(){
              {text:"Sim", onPress: LinkRemove}
             ]
         )
+    }
+
+    async function handleOpen(){
+        try {
+            await Linking.openURL(link.url)
+            setShowModal(false)
+        } catch (error) {
+            Alert.alert("Link","Não foi possivel abrir o link")
+        }
     }
 
     useFocusEffect(
@@ -100,7 +109,7 @@ export default function Index(){
                         </Text>
                         <View style={styles.modalFooter}>
                             <Option name="Exlcuir" icon='delete' variant='secondary' onPress={handleRemove}/>
-                            <Option name='Abrir' icon="language"/>
+                            <Option name='Abrir' icon="language" onPress={handleOpen}/>
                         </View>
                     </View>
                 </View>
