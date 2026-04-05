@@ -5,8 +5,8 @@ import { colors } from '@/styles/color'
 import { Categories } from "@/components/categories"
 import { Link } from '@/components/link'
 import { Option } from '@/components/option'
-import { router } from 'expo-router'
-import { useEffect, useState } from 'react'
+import { router, useFocusEffect } from 'expo-router'
+import { useEffect, useState,useCallback } from 'react'
 import { categories } from '@/utils/categories'
 import { linkStorage, type LinkStorage } from '@/storage/link-storage'
 
@@ -21,9 +21,11 @@ export default function Index(){
             Alert.alert("Error", "Error a listar os links")
         }
     }
-    useEffect(()=>{
-        getLinks()
-    },[category])
+    useFocusEffect(
+        useCallback(()=>{
+            getLinks()
+        },[])
+    )
     return(
         <View style={styles.container}>
             <View style={styles.header}>
