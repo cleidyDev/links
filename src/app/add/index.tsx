@@ -7,23 +7,35 @@ import { Categories } from "@/components/categories"
 import { Input } from "@/components/input"
 import { Button } from "@/components/Button"
 import { useState } from "react"
+import { linkStorage } from "@/storage/link-storage"
 
 export function AddPage(){
     const [name,setName] = useState("")
     const [url, setUrl] = useState("")
     const [category,setCategory] = useState("")
 
-    function handleAdd(){
-        if(!category){
-            return Alert.alert("Categoria","Selecione a categoria")
-        }
+    async function handleAdd(){
+        try{
+            if(!category){
+                return Alert.alert("Categoria","Selecione a categoria")
+            }
 
-        if(!name.trim()){
-            return Alert.alert("Name","Infome o nome do link")
-        }
+            if(!name.trim()){
+                return Alert.alert("Name","Infome o nome do link")
+            }
 
-        if(!url.trim()){
-            return Alert.alert("URL", "Informe a URL")
+            if(!url.trim()){
+                return Alert.alert("URL", "Informe a URL")
+            }
+
+            await linkStorage.save({
+                id: new Date().getTime().toString(),
+                name,
+                url,
+                category
+            })
+        }catch(error){
+            Alert.alert("Error","Não foi possivel salver o link")
         }
 
         
@@ -43,8 +55,18 @@ export function AddPage(){
             </Text>
             <Categories onChange={setCategory} selected={category} />
             <View style={styles.form}>
-                <Input placeholder="Link Name" onChangeText={setName} autoComplete="name"/>
-                <Input placeholder="URL" onChangeText={setUrl} autoComplete="url"/>
+                <Input 
+                    placeholder="Link Name"
+                    onChangeText={setName} 
+                    autoComplete="name"
+                    autoCapitalize="none"
+                />
+                <Input
+                    placeholder="URL"
+                    onChangeText={setUrl}
+                    autoComplete="url"
+                    autoCapitalize="none"
+                />
                 <Button title="Adicionar" onPress={handleAdd}/>
             </View>
         </View>
