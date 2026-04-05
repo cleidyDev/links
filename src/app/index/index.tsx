@@ -1,4 +1,4 @@
-import {Image,View,TouchableOpacity,FlatList, Modal,Text} from 'react-native'
+import {Image,View,TouchableOpacity,FlatList, Modal,Text, Alert} from 'react-native'
 import {MaterialIcons} from "@expo/vector-icons"
 import {styles} from "./styles"
 import { colors } from '@/styles/color'
@@ -6,11 +6,24 @@ import { Categories } from "@/components/categories"
 import { Link } from '@/components/link'
 import { Option } from '@/components/option'
 import { router } from 'expo-router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { categories } from '@/utils/categories'
+import { linkStorage, type LinkStorage } from '@/storage/link-storage'
 
 export default function Index(){
+    const [links,setLinks] = useState<LinkStorage[]>([])
     const [category,setCategory] = useState(categories[0].name)
+    async function getLinks(){
+        try{
+            const response = await linkStorage.get()
+            setLinks(response)
+        }catch(error){
+            Alert.alert("Error", "Error a listar os links")
+        }
+    }
+    useEffect(()=>{
+        getLinks()
+    },[category])
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -25,12 +38,12 @@ export default function Index(){
                 style={styles.links}
                 contentContainerStyle={styles.LinksContent}
                 showsVerticalScrollIndicator={false}
-                data={["1","2","3","4","5","6","7","8","9","10"]}
-                keyExtractor={item => item}
-                renderItem={()=>(
+                data={links}
+                keyExtractor={(item) => item.id}
+                renderItem={({item})=>(
                     <Link 
-                        name="Organify"
-                        url="https://beta.v1.organify.studio/cleidy-fumancas-workspace/" 
+                        name={item.name}
+                        url={item.url} 
                         onDetails={()=> console.log("Link Pressed")}
                     />
                 )}
