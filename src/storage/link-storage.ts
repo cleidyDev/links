@@ -1,7 +1,8 @@
 import type { LinkStorage } from "@/types/type"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import Constants from "expo-constants"
 
-const LINKS_STORAGE_KEY = "links-storage"
+const LINKS_STORAGE_KEY = Constants.expoConfig?.extra?.linksStorageKey || "links-storage"
 
 
 
