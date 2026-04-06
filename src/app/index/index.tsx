@@ -8,7 +8,8 @@ import { Option } from '@/components/option'
 import { router, useFocusEffect } from 'expo-router'
 import { useEffect, useState,useCallback } from 'react'
 import { categories } from '@/utils/categories'
-import { linkStorage, type LinkStorage } from '@/storage/link-storage'
+import { linkStorage } from '@/storage/link-storage'
+import type { LinkStorage } from '@/types/type'
 
 export default function Index(){
     const [showModal,setShowModal] = useState(false)
