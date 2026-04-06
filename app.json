@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "links",
-    "slug": "links",
+    "slug": "links-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -22,7 +22,8 @@
         "backgroundColor": "#09090B"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.cleidycf.linksapp"
     },
     "web": {
       "bundler": "metro",
@@ -30,7 +31,11 @@
       "favicon": "./assets/images/favicon.png"
     },
     "extra": {
-      "linksStorageKey": "links-storage"
+      "linksStorageKey": "links-storage",
+      "router": {},
+      "eas": {
+        "projectId": "8d95ef86-3681-4f99-90f2-acb2a7260f56"
+      }
     },
     "plugins": [
       "expo-router"
